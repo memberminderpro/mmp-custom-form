@@ -1,0 +1,137 @@
+
+    <div class="mmp">
+      <!-- NOTE: This form is used to sign up new members for RAGAS.online 
+        using the iMembersDB membership management system. For version 
+        history, development notes,and additional documentation, visit 
+        https://github.com/memberminderpro/ragas.online
+    
+        For more information or support contact Member Minder Pro, LLC
+        at support@memberminderpro.com or visit https://memberminderpro.com
+        -->
+      <div id="Step1">
+        <form id="joinForm" name="form" action="https://www.emembersdb.com/nm/custom.cfm" method="Post" >
+          <!-- <input type="hidden" name="AccountEmail" value="membership@RAGAS.online" id="AccountEMail" />
+          <!-- SECTION: Form Fields -->
+          <fieldset>
+            <legend>Member Information</legend>
+
+            <p>
+                <label for="MCY">Member Type</label>
+                <select id="MCY" name="MCY" class="TxtIn" required>
+                    <option value="588|75|5">5-Year Membership ($75.00 USD)</option>
+                    <option value="587|30|1">1-Year Annual ($30.00 USD)</option>
+                    <option value="589|15|1">1-Year Rotaractor/Peace Fellow ($15.00 USD) </option>
+                </select>
+            </p>
+            <p>
+                <label for="FirstName">First Name</label>
+                <input class="entry" id="FirstName" type="text" maxlength="32" name="FirstName"  size="32" placeholder="First Name" required />
+            </p>
+            <p>
+                <label for="LastName">Last Name</label>
+                <input class="entry" id="LastName" type="text" maxlength="32" name="LastName"  size="32" placeholder="Last Name" required />
+            </p>
+            <p>
+                <label for="Email">Email Address </label>
+                <input class="entry" id="Email" type="text" maxlength="64" name="email" size="32"  placeholder="EMail Address" required />
+                <div id="EMailDiv">This email is already in the system. Please email membership at membership@RAGAS.org to change your membership type.</div>
+            </p>
+            <p>
+                <label for="fkclubtype">I am a </label>
+                <select id="fkclubtype" name="fkclubtype" class="TxtIn" required>
+                    <option value="Rotary Club">Rotarian</option>
+                    <option value="Rotaract Club">Rotaractor</option>
+                    <option value="Non-Rotarian">Non-Rotarian / Peace Fellow</option>
+                </select>
+                <input id="fkmembertype" type="hidden" name="fkmembertype" value="Active" />
+            </p>
+            <p>
+                <!--- FK reference in iMembersDB Region(Club) tab -->
+                <label for="fkcountry">Club Country</label>
+                <select id="fkcountry" name="fkcountry" class="TxtIn CountryLookup" required></select>
+            </p>
+            <p>
+                <label for="stateprov">State/Province</label>
+                <select id="stateprov" name="stateprov" class="TxtIn StateProvLookup" required></select>
+                <!--- FK reference in iMembersDB Region(Club) tab (not currently used) -->
+                <input id="fkstateprov" type="hidden" name="fkstateprov" />
+            </p>
+            <p>
+                <label for="clubname">Club Name</label>
+                <select id="clubname" type="text" name="clubname"class="TxtIn ClubLookupInZone" required></select>
+                <div id="ClubLocDiv"></div>
+            </p>
+          </fieldset>
+
+          <fieldset>
+            <legend>Billing Address:</legend>
+            <p>
+                <label for="Address1">Address1</label>
+                <input class="entry" id="Address1" type="text" maxlength="50" name="Address1" size="50" type="text"  placeholder="Street Address" required/>
+            </p>
+            <p>
+                <label for="Address2">Address2</label>
+                <input class="entry" id="Address2" type="text" maxlength="50" name="Address2" size="50" placeholder="Ste / Suite" />
+            </p>
+            <p>
+                <label for="City"> City</label>
+                <input class="entry" id="City" type="text" maxlength="50" name="City" size="50"  placeholder="City" required/>
+            </p>
+            <p>
+                <label for="StateCode">State Code</label>
+                <input class="entry" id="StateCode" type="text" maxlength="3" name="StateCode" size="3" required />
+            </p>
+            <p>
+                <label for="ProvOrOther">Province</label>
+                <input class="entry" id="ProvOrOther" type="text" maxlength="20" name="ProvOrOther" size="20" placeholder="Province" />
+            </p>
+            <p>
+                <label for="CountryCode">Country Code</label>
+                <input class="entry" id="CountryCode" type="text" maxlength="3" name="CountryCode" size="3" required />
+                <input class="entry" id="CountryName" type="hidden" maxlength="3" name="CountryName" />
+            </p>
+            <p>
+                <label for="PostalZip">Postal Code</label>
+                <input class="entry" id="PostalZip" type="text" maxlength="12" name="PostalZip" size="12" autocomplete="postal-code"  placeholder="Zip / Postal Code" pattern="^[A-Za-z0-9 -]{3,9}$"
+                title="Please enter a valid postal code." required />
+            </p>
+
+         </fieldset>
+        <fieldset>
+          <div>
+            <p>RAGAS and our membership management system vendor, <a href="https://mmpro.llc" target="_blank" rel="noopener external" >Member Minder Pro, LLC</a>, <em>(dba <strong>iMembersDB</strong>)</em> is collecting your personal information in order to process your online application for RAGAS membership. The Registrant authorizes RAGAS to collect and use personal information about the Registrant for the purpose of receiving communications and the purposes described in the RAGAS policies relating to data privacy - RAGAS.online/privacy. Permission may be withdrawn at any time by contacting RAGAS’s Privacy Officer at <a href="mailto:privacy@ragas.online?subject=RE%3A%20%27Join%20Us%20Form%27%20Privacy" target="_blank">privacy@ragas.online</a>.</p>
+            <p>Please check the <code>I Consent</code> checkbox below to allow us to collect, use, and disclose your personal information as described above.</p>
+            <p class="consent-affirmation">
+              <input id="Consent" type="checkbox" name="Consent" value="1" disabled />
+              <label for="Consent" class="disabled">I Consent</label>
+            </p>
+          </div>
+          <div class="captcha-send">
+            <p>
+              <input id="Send" type="button" name="Send" value="Submit Application" class="btn btn-warning noprint" />
+            </p>
+          </div>
+        </fieldset> 
+        <!-- !SECTION: Form Fields -->
+        </form>
+          <div class="print-link">
+            <p class="noprint">
+              <a href="#" id="prtapp">Click here</a> to print.
+            </p>
+          </div>      
+      </div>
+      <!-- SECTION: Hidden Divs -->
+      <div id="Step2">
+        <h3>Problem!</h3>
+        <p>There was a system error creating your new membership. Please contact support to resolve this issue.</p>
+        <div id="ErrorDiv"></div>
+      </div>
+      <div id="wait">
+        <div>
+          <img src="https://www.emembersdb.com/Portal/images/tm.png" height="50" />
+          <h4>Redirecting to payment processor...</h4>
+          <img src="https://www.emembersdb.com/images/loading.gif" height="30" />
+        </div>
+      </div>
+      <!-- !SECTION: Hidden Divs -->
+    </div>
