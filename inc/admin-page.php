@@ -56,6 +56,14 @@ function mmp_custom_form_settings_init() {
         'mmpPlugin', 
         'mmp_custom_form_mmpPlugin_section' 
     );
+
+    add_settings_field(
+        'mmp_custom_form_debug_mode',
+        'Enable Debug Mode',
+        'mmp_custom_form_debug_mode_callback', 
+        'mmpPlugin',
+        'mmp_custom_form_mmpPlugin_section'
+    );
 }
 
 function mmp_custom_form_recaptcha_site_key_render() { 
@@ -142,7 +150,20 @@ function mmp_custom_form_settings_sanitize($input) {
         $sanitized_input['AccountEmail'] = sanitize_email($input['AccountEmail']);
     }
 
+    if (isset($input['debug_mode'])) {
+        $sanitized_input['debug_mode'] = (bool) $input['debug_mode'];
+    }
+
     return $sanitized_input;
+}
+
+function mmp_custom_form_debug_mode_callback() {
+    $options = get_option('mmp_custom_form_settings');
+    $debug_mode = isset($options['debug_mode']) ? $options['debug_mode'] : false;
+    ?>
+    <input type='checkbox' name='mmp_custom_form_settings[debug_mode]' <?php checked($debug_mode, true); ?>>
+    <p class="description">When enabled, form submissions will display the data on screen instead of submitting to the endpoint.</p>
+    <?php
 }
 
 register_setting('mmpPlugin', 'mmp_custom_form_settings', 'mmp_custom_form_settings_sanitize');
