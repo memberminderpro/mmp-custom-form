@@ -119,6 +119,7 @@ function mmp_custom_form_options_page() {
     ?>
     <form action='options.php' method='post'>
         <h2>Custom Membership Form Settings</h2>
+        <p>For questions or support, please contact <a href="mailto:support@memberminderpro.com">support@memberminderpro.com</a>.</p>
         <?php
         settings_fields('mmpPlugin');
         do_settings_sections('mmpPlugin');
