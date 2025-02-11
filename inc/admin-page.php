@@ -118,7 +118,7 @@ function mmp_custom_form_settings_section_callback() {
 function mmp_custom_form_options_page() { 
     ?>
     <form action='options.php' method='post'>
-        <h2>"<a href='/join-us/'>Join Us</a>" Form Settings</h2>
+        <h2>Custom Membership Form Settings</h2>
         <?php
         settings_fields('mmpPlugin');
         do_settings_sections('mmpPlugin');
