@@ -2,7 +2,7 @@
 /**
  * Plugin Name: MMP Custom Form
  * Description: A custom HTML form with multi-vendor captcha integration support
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Member Minder Pro, LLC
  */
 
@@ -29,7 +29,8 @@ function mmp_custom_form_script_shortcode() {
         'recaptcha_site_key' => get_option('mmp_custom_form_settings')['mmp_custom_form_recaptcha_site_key'],
         'account_ID' => get_option('mmp_custom_form_settings')['AccountID'],
         'BID' => get_option('mmp_custom_form_settings')['BID'],
-        'account_email' => get_option('mmp_custom_form_settings')['AccountEmail']
+        'account_email' => get_option('mmp_custom_form_settings')['AccountEmail'],
+        'debug_mode' => !empty(get_option('mmp_custom_form_settings')['debug_mode'])
     );
     wp_localize_script('mmp-form-script', 'mmpFormOptions', $localization_array);
 

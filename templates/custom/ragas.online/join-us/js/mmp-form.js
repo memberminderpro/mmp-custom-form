@@ -129,63 +129,69 @@ jQuery(document).ready(function ($) {
 
   function verifyCaptchaAndSubmitForm(captchaData) {
     $.ajax({
-      url: "/wp-admin/admin-ajax.php", // WordPress AJAX handler
+      url: "/wp-admin/admin-ajax.php",
       type: "POST",
       data: Object.assign(
         {
-          action: "verify_and_submit_captcha", // The action hook for the PHP function
+          action: "verify_and_submit_captcha",
         },
         captchaData
       ),
       success: function (response) {
         if (response.success) {
-          // Captcha verification succeeded; proceed with form submission
-          // Remove captcha response field or modify formData as needed
-          $(
-            '[name="g-recaptcha-response"], [name="h-captcha-response"]'
-          ).remove();
+          // Remove captcha response field
+          $('[name="g-recaptcha-response"], [name="h-captcha-response"]').remove();
 
-          // Append new fields directly to the form before submission
+          // Add hidden fields to form
           $('<input>').attr({
-              type: 'hidden',
-              name: 'AccountID',
-              value: mmpFormOptions.account_ID
+            type: 'hidden',
+            name: 'AccountID',
+            value: mmpFormOptions.account_ID
           }).appendTo($joinForm);
 
           $('<input>').attr({
-              type: 'hidden',
-              name: 'BID',
-              value: mmpFormOptions.BID
+            type: 'hidden',
+            name: 'BID',
+            value: mmpFormOptions.BID
           }).appendTo($joinForm);
 
           $('<input>').attr({
-              type: 'hidden',
-              name: 'AccountEmail',
-              value: mmpFormOptions.account_email
+            type: 'hidden',
+            name: 'AccountEmail',
+            value: mmpFormOptions.account_email
           }).appendTo($joinForm);
 
-          // Serialize form data for submission, now excluding the captcha response
-          let formData = $joinForm.serialize();
-
-          console.log(formData); // Log the serialized form data
-          // Debugger statement acts as a breakpoint if the developer console is open
-          debugger;
+          // Get form data
+          let formData = $joinForm.serializeArray();
           
-          // Dynamically update the UI with the redirection message
-          $("#messageContainer").html(
-            "<h4>Thank You!</h4><p>You will now be redirected to our payment gateway in a new window to complete the process. You may safely navigate away from this page or close this tab.</p>"
-          );
-
-          // Dynamically update UI or redirect as needed before form submission
-          // This part submits the form to the action URL, opening in a new tab/window
-          $joinForm.attr("target", "_blank").hide().submit();
+          if (mmpFormOptions.debug_mode) {
+            // Debug mode - display form data
+            let debugOutput = '<h3>Debug Mode - Form Data:</h3><pre>';
+            formData.forEach(function(field) {
+              debugOutput += field.name + ': ' + field.value + '\n';
+            });
+            debugOutput += '</pre>';
+            
+            $("#messageContainer").html(debugOutput);
+            
+            // Hide the form
+            $joinForm.hide();
+            
+            // Prevent form submission
+            return false;
+          } else {
+            // Normal mode - submit form
+            $("#messageContainer").html(
+              "<h4>Thank You!</h4><p>You will now be redirected to our payment gateway in a new window to complete the process. You may safely navigate away from this page or close this tab.</p>"
+            );
+            
+            $joinForm.attr("target", "_blank").hide().submit();
+          }
         } else {
-          // Handle captcha verification failure
           alert("Captcha verification failed. Please try again.");
         }
       },
       error: function (xhr, status, error) {
-        // Handle potential AJAX request errors
         alert("An error occurred: " + error);
       },
     });
