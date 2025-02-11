@@ -173,15 +173,26 @@ jQuery(document).ready(function ($) {
           if (mmpFormOptions.debug_mode) {
             // Debug mode - display form data
             let debugOutput = '<h3>Debug Mode - Form Data:</h3><pre>';
+            // Add the hidden fields we just appended
+            debugOutput += 'AccountID: ' + mmpFormOptions.account_ID + '\n';
+            debugOutput += 'BID: ' + mmpFormOptions.BID + '\n';
+            debugOutput += 'AccountEmail: ' + mmpFormOptions.account_email + '\n\n';
+            
+            // Add all form fields
             formData.forEach(function(field) {
-              debugOutput += field.name + ': ' + field.value + '\n';
+              if (field.value) { // Only show fields with values
+                debugOutput += field.name + ': ' + field.value + '\n';
+              }
             });
             debugOutput += '</pre>';
             
+            // Show the message container before adding content
+            $("#messageContainer").show();
             $("#messageContainer").html(debugOutput);
             
-            // Hide the form
+            // Hide the form but keep debug indicator visible
             $joinForm.hide();
+            $debugIndicator.show();
             
             // Prevent form submission
             return false;

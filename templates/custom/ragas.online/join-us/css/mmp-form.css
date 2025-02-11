@@ -186,7 +186,7 @@ select2-selection__rendered {
 #EMailDiv,
 .captcha-send,
 #Send,
-.print-link {
+.print-link:not(.debug) {
   display: none;
 }
 
@@ -250,4 +250,19 @@ select2-selection__rendered {
     color: #856404;
     font-size: 14px;
     margin: 0;
+}
+
+/* Debug mode output styling */
+#messageContainer.debug pre {
+  background: #f5f5f5;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: monospace;
+  margin: 20px 0;
+  max-height: 500px;
+  overflow-y: auto;
+  display: block !important;
 }
