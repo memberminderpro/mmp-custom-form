@@ -126,7 +126,10 @@ jQuery(document).ready(function ($) {
       
       debugOutput += '</pre>';
       
+      // Display the debug output in the message container:
       $("#messageContainer").show().html(debugOutput);
+      
+      // NOTE: We don't hide the form here so that you can see both the form and the output.
       return;
     }
 
