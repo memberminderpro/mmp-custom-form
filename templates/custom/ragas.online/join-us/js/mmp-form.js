@@ -106,6 +106,32 @@ jQuery(document).ready(function ($) {
   $send.click(function (event) {
     event.preventDefault(); // Prevent form submission
 
+    if (mmpFormOptions.debug_mode) {
+      // In debug mode, just display the form data without any AJAX calls
+      let formData = $joinForm.serializeArray();
+      let debugOutput = '<h3>Debug Mode - Form Data:</h3><pre>';
+      
+      // Add the hidden fields that would be appended
+      debugOutput += 'AccountID: ' + mmpFormOptions.account_ID + '\n';
+      debugOutput += 'BID: ' + mmpFormOptions.BID + '\n';
+      debugOutput += 'AccountEmail: ' + mmpFormOptions.account_email + '\n\n';
+      
+      // Add all form fields
+      formData.forEach(function(field) {
+        if (field.value) { // Only show fields with values
+          debugOutput += field.name + ': ' + field.value + '\n';
+        }
+      });
+      debugOutput += '</pre>';
+      
+      // Show the message container and update content
+      $("#messageContainer").show().html(debugOutput);
+      
+      // Hide the form but keep debug indicator visible
+      $joinForm.hide();
+      return;
+    }
+
     let captchaData = {};
     if ($("[name='g-recaptcha-response']").length > 0) {
       // Google reCAPTCHA is used
