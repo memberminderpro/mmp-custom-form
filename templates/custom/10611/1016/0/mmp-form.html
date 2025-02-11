@@ -3,14 +3,15 @@
 <div class="mmp">
   <div id="Step1">
     <form id="mmp-form" name="registration" action="https://www.emembersdb.com/nm/custom.cfm" method="POST">
+
       <!-- SECTION: Contact Information -->
       <fieldset>
         <legend>Contact Information</legend>
-        <div class="form-row two-column">
+        <div class="form-row three-column">
           <div class="form-group">
             <label for="FirstName">First Name</label>
             <input class="entry" id="FirstName" type="text" name="FirstName" placeholder="e.g., Riley" required
-              aria-required="true" maxlength="50" pattern="[A-Za-z\s'\-]+" />
+              aria-required="true" maxlength="50" autocomplete="given-name" pattern="[A-Za-z\s'\-]+" />
             <span id="FirstNameError" class="error-message" aria-live="polite">
               Please enter your first name.
             </span>
