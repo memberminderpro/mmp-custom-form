@@ -235,3 +235,19 @@ select2-selection__rendered {
     max-height: 500px;
     overflow-y: auto;
 }
+
+/* Debug mode indicator styling */
+#debug-mode-indicator {
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 4px;
+    margin: 20px 0;
+    padding: 15px;
+    text-align: center;
+}
+
+.debug-notice {
+    color: #856404;
+    font-size: 14px;
+    margin: 0;
+}

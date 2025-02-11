@@ -33,8 +33,14 @@ jQuery(document).ready(function ($) {
   const $consent = $("#Consent");
   const $joinForm = $("#joinForm");
   const $send = $("#Send");
+  const $debugIndicator = $("#debug-mode-indicator");
 
   let $siteEmail = mmpFormOptions.account_email;
+
+  // Show debug mode indicator if debug mode is enabled
+  if (mmpFormOptions.debug_mode) {
+    $debugIndicator.show();
+  }
 
   $('input[required], select[required]').each(function () {
     var inputId = $(this).attr("id");
