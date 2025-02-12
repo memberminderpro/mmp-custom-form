@@ -1,9 +1,13 @@
 <?php
 /**
  * Plugin Name: MMP Custom Form
+ * Plugin URI: https://memberminderpro.com/
  * Description: A custom HTML form with multi-vendor captcha integration support
- * Version: 1.2.1
+ * Version: 1.2.3
  * Author: Member Minder Pro, LLC
+ * Author URI: https://memberminderpro.com
+ * Requires at least: WordPress 3.0
+ * Requires PHP: 5.4
  */
 
 // Create a settings page for the plugin
