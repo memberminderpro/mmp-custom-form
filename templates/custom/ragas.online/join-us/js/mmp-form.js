@@ -100,7 +100,19 @@ jQuery(document).ready(function ($) {
 
   // Consent checkbox change event
   $consent.change(function () {
-    toggleCaptchaAndButton(); // Call the function to toggle captcha and button based on consent
+    toggleCaptchaAndButton(); // Toggle the captcha and submit button based on consent
+    if ($consent.is(":checked")) {
+      // Build the form payload preview and display it before submission
+      let formDataPreview = $joinForm.serializeArray();
+      console.log("Form payload preview at consent enabled:", formDataPreview);
+      $("#messageContainer").show().html(
+        "<h4>Form Payload Preview:</h4><pre>" +
+        JSON.stringify(formDataPreview, null, 2) +
+        "</pre>"
+      );
+    } else {
+      $("#messageContainer").hide();
+    }
   });
 
   $send.click(function (event) {
@@ -224,7 +236,7 @@ jQuery(document).ready(function ($) {
             // Prevent form submission
             return false;
           } else {
-            // Normal mode - before submission, remove extraneous fields.
+            // Normal mode - before submission, remove name attributes from extraneous fields.
             var allowedNames = [
               "BID", "AccountID", "ClubID", "UserID",
               "UserStatusCode", "AddressTypeID", "EmailTypeID",
@@ -237,7 +249,7 @@ jQuery(document).ready(function ($) {
             $joinForm.find("input[name], select[name], textarea[name]").each(function(){
               var fieldName = $(this).attr("name");
               if (allowedNames.indexOf(fieldName) === -1) {
-                $(this).remove();
+                $(this).removeAttr("name");
               }
             });
             $("#messageContainer").html(
