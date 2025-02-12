@@ -172,7 +172,7 @@ jQuery(document).ready(function ($) {
       ),
       success: function (response) {
         if (response.success) {
-          // Remove captcha response field
+          // Remove captcha response fields
           $('[name="g-recaptcha-response"], [name="h-captcha-response"]').remove();
 
           // Add hidden fields to form
@@ -196,11 +196,11 @@ jQuery(document).ready(function ($) {
 
           // Get form data
           let formData = $joinForm.serializeArray();
+          console.log("Form Payload:", formData);
           
           if (mmpFormOptions.debug_mode) {
             // Debug mode - display form data
             let debugOutput = '<h3>Debug Mode - Form Data:</h3><pre>';
-            // Add the hidden fields we just appended
             debugOutput += 'AccountID: ' + mmpFormOptions.account_ID + '\n';
             debugOutput += 'BID: ' + mmpFormOptions.BID + '\n';
             debugOutput += 'AccountEmail: ' + mmpFormOptions.account_email + '\n\n';
