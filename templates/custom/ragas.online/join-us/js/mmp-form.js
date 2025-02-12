@@ -400,14 +400,45 @@ jQuery(document).ready(function ($) {
     console.log("ClubLookup change");
     let data = e.params.data;
     console.log(data);
+    
+    // Display the district and zone values below the club dropdown (if needed)
+    $("#fkdistrict").val(data.districtid); // optionally store district info
+    $("#zonename").val(data.zonename); // store zone info
+    $("#fkclubname").val(data.text); // store the club's display name if needed
 
-    $("#fkdistrict").val(data.districtid); // DistrictID
-    $("#zonename").val(data.zonename); // zonename
-    $("#ClubID").val(data.id); // iMembersDB ClubID
-    $("#fkclubname").val(data.text); // fkclubNmae
     $("#ClubLocDiv").html(
       "District: " + data.districtid + "   RAGAS zone: " + data.zonename
     );
+
+    // Now call FKRotaryClubNoRegion to get the proper club id for submission.
+    $.ajax({
+      url: "https://www.emembersdb.com/Lookup/FKRotaryClubNoRegion.cfm",
+      type: "POST",
+      dataType: "json",
+      data: {
+        AccountID: mmpFormOptions.account_ID,
+        countrycode: $(".CountryLookup option:selected").val(),
+        statecode: $("#StateCode").val(),
+        orgtype: $("#fkclubtype").val(),
+        term: $.trim(data.text)
+      },
+      success: function (res) {
+        if (res && res.length > 0) {
+          // Assuming the first returned item is the proper club, set its id.
+          $("#ClubID").val(res[0].id);
+          console.log("Proper club id from FKRotaryClubNoRegion:", res[0].id);
+        } else {
+          // Fallback to using the zone id returned from the inZone lookup.
+          $("#ClubID").val(data.id);
+          console.warn("No proper club found; falling back to zone id:", data.id);
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("FKRotaryClubNoRegion error:", error);
+        // Fallback to using the zone id
+        $("#ClubID").val(data.id);
+      }
+    });
   });
 
   $(".ClubLookupInZone").select2({
@@ -441,11 +472,13 @@ jQuery(document).ready(function ($) {
       },
     },
     results: function (data) {
-      results = [];
+      let results = [];
       $.each(data, function (index, item) {
         results.push({
-          id: item.id,
+          id: item.id, // note: this is the zone id returned which we aren't using for submission
           text: item.text,
+          districtid: item.districtid, // save district information
+          zonename: item.zonename || item.zone // save zone information (either field)
         });
       });
       return {
