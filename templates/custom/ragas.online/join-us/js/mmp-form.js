@@ -252,6 +252,10 @@ jQuery(document).ready(function ($) {
                 $(this).removeAttr("name");
               }
             });
+            // Log the final payload just before submission
+            let finalPayload = $joinForm.serializeArray();
+            console.log("Final Payload before submission:", finalPayload);
+            
             $("#messageContainer").html(
               "<h4>Thank You!</h4><p>You will now be redirected to our payment gateway in a new window to complete the process. You may safely navigate away from this page or close this tab.</p>"
             );
