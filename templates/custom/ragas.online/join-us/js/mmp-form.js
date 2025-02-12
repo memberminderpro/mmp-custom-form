@@ -117,7 +117,8 @@ jQuery(document).ready(function($) {
                     }).appendTo($joinForm);
                     let formData = $joinForm.serialize();
                     console.log(formData);
-                    debugger ;$("#messageContainer").html("<h4>Thank You!</h4><p>You will now be redirected to our payment gateway in a new window to complete the process. You may safely navigate away from this page or close this tab.</p>");
+                    //debugger ;
+                    $("#messageContainer").html("<h4>Thank You!</h4><p>You will now be redirected to our payment gateway in a new window to complete the process. You may safely navigate away from this page or close this tab.</p>");
                     $joinForm.attr("target", "_blank").hide().submit()
                 } else {
                     alert("Captcha verification failed. Please try again.")

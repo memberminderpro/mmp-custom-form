@@ -122,7 +122,7 @@ function mmp_custom_form_options_page() {
     <form action='options.php' method='post'>
         <h2>MMP Custom Membership Form</h2>
         <p><strong>Version <?php echo esc_html( $version ); ?></strong></p>
-        <p>For support, please contact <a href="mailto:support@memberminderpro.com">support@memberminderpro.com</a>.</p>
+        <p>For support, please visit <a href="https://www.imemberssupport.com/new-ticket">https://www.imemberssupport.com</a>.</p>
         <?php
         settings_fields('mmpPlugin');
         do_settings_sections('mmpPlugin');
