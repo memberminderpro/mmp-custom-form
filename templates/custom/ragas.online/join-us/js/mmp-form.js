@@ -173,7 +173,7 @@ jQuery(document).ready(function ($) {
           let formData = $joinForm.serialize();
 
           console.log(formData); // Log the serialized form data
-          debugger;
+          //debugger;
           
           $("#messageContainer").html(
             "<h4>Thank You!</h4><p>You will now be redirected to our payment gateway in a new window to complete the process. You may safely navigate away from this page or close this tab.</p>"

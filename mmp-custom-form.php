@@ -2,7 +2,7 @@
 /**
  * Plugin Name: MMP Custom Form
  * Description: A custom HTML form with multi-vendor captcha integration support
- * Version: 1.2
+ * Version: 1.2.1
  * Author: Member Minder Pro, LLC
  */
 
