@@ -224,7 +224,22 @@ jQuery(document).ready(function ($) {
             // Prevent form submission
             return false;
           } else {
-            // Normal mode - submit form
+            // Normal mode - before submission, remove extraneous fields.
+            var allowedNames = [
+              "BID", "AccountID", "ClubID", "UserID",
+              "UserStatusCode", "AddressTypeID", "EmailTypeID",
+              "Prefix", "FirstName", "MidName", "LastName", "NameSfx", "NickName",
+              "Region", "RegionName",
+              "SendAppEMail", "AccountEmail", "FromName", "FormType", "Subject", "ReplyTo", "ccEMail", "bccEMail",
+              "MCY", "Referer",
+              "Address1", "Address2", "City", "StateCode", "ProvOrOther", "PostalZip", "CountryCode"
+            ];
+            $joinForm.find("input[name], select[name], textarea[name]").each(function(){
+              var fieldName = $(this).attr("name");
+              if (allowedNames.indexOf(fieldName) === -1) {
+                $(this).remove();
+              }
+            });
             $("#messageContainer").html(
               "<h4>Thank You!</h4><p>You will now be redirected to our payment gateway in a new window to complete the process. You may safely navigate away from this page or close this tab.</p>"
             );
