@@ -423,12 +423,20 @@ jQuery(document).ready(function ($) {
         term: $.trim(data.text)
       },
       success: function (res) {
+        console.log("Response from FKRotaryClubNoRegion:", res);
         if (res && res.length > 0) {
-          // Assuming the first returned item is the proper club, set its id.
+          // Set hidden club id to the proper club id from the response.
           $("#ClubID").val(res[0].id);
           console.log("Proper club id from FKRotaryClubNoRegion:", res[0].id);
+          // If the returned club text differs from the currently selected text,
+          // update the select2 displayed option with the proper text.
+          if (res[0].text && res[0].text !== data.text) {
+            var newOption = new Option(res[0].text, res[0].id, true, true);
+            $(".ClubLookupInZone").append(newOption).trigger('change');
+            console.log("Updated select2 option text to:", res[0].text);
+          }
         } else {
-          // Fallback to using the zone id returned from the inZone lookup.
+          // Fallback to the original zone id if no proper club is returned.
           $("#ClubID").val(data.id);
           console.warn("No proper club found; falling back to zone id:", data.id);
         }
