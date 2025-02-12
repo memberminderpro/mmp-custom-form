@@ -403,14 +403,14 @@ jQuery(document).ready(function ($) {
     
     // Display the district and zone values below the club dropdown (if needed)
     $("#fkdistrict").val(data.districtid); // optionally store district info
-    $("#zonename").val(data.zonename); // store zone info
-    $("#fkclubname").val(data.text); // store the club's display name if needed
+    $("#zonename").val(data.zonename);       // store zone info
+    $("#fkclubname").val(data.text);         // store the club's display name if needed
 
     $("#ClubLocDiv").html(
       "District: " + data.districtid + "   RAGAS zone: " + data.zonename
     );
 
-    // Parse the proper club id directly from the text field.
+    // Parse the proper club id from the text (e.g. from "Green Bay (89694)")
     let match = data.text.match(/\((\d+)\)$/); // matches digits inside the final parentheses
     let properClubId = match ? match[1] : data.id;
     $("#ClubID").val(properClubId);
