@@ -140,52 +140,51 @@ jQuery(document).ready(function ($) {
       success: function (response) {
         if (response.success) {
           // Captcha verification succeeded; proceed with form submission
-          // Remove captcha response field or modify formData as needed
-          $(
-            '[name="g-recaptcha-response"], [name="h-captcha-response"]'
-          ).remove();
+          $('[name="g-recaptcha-response"], [name="h-captcha-response"]').remove();
 
           // Append new fields directly to the form before submission
-          $('<input>').attr({
-              type: 'hidden',
-              name: 'AccountID',
-              value: mmpFormOptions.account_ID
+          $("<input>").attr({
+            type: "hidden",
+            name: "AccountID",
+            value: mmpFormOptions.account_ID,
           }).appendTo($joinForm);
 
-          $('<input>').attr({
-              type: 'hidden',
-              name: 'BID',
-              value: mmpFormOptions.BID
+          $("<input>").attr({
+            type: "hidden",
+            name: "BID",
+            value: mmpFormOptions.BID,
           }).appendTo($joinForm);
 
-          $('<input>').attr({
-              type: 'hidden',
-              name: 'AccountEmail',
-              value: mmpFormOptions.account_email
+          $("<input>").attr({
+            type: "hidden",
+            name: "AccountEmail",
+            value: mmpFormOptions.account_email,
           }).appendTo($joinForm);
 
-          // Serialize form data for submission, now excluding the captcha response
+          // --- New code: Remove extra/unwanted fields ---
+          $joinForm.find(
+            '[name="fkclubtype"], [name="fkmembertype"], [name="fkcountry"], ' +
+            '[name="stateprov"], [name="fkstateprov"], [name="fkclubname"], ' +
+            '[name="CountryName"], [name="Consent"]'
+          ).removeAttr("name");
+          // --- End new code ---
+
+          // Serialize form data for submission (this will now exclude the removed fields)
           let formData = $joinForm.serialize();
 
           console.log(formData); // Log the serialized form data
-          // Debugger statement acts as a breakpoint if the developer console is open
           debugger;
           
-          // Dynamically update the UI with the redirection message
           $("#messageContainer").html(
             "<h4>Thank You!</h4><p>You will now be redirected to our payment gateway in a new window to complete the process. You may safely navigate away from this page or close this tab.</p>"
           );
 
-          // Dynamically update UI or redirect as needed before form submission
-          // This part submits the form to the action URL, opening in a new tab/window
           $joinForm.attr("target", "_blank").hide().submit();
         } else {
-          // Handle captcha verification failure
           alert("Captcha verification failed. Please try again.");
         }
       },
       error: function (xhr, status, error) {
-        // Handle potential AJAX request errors
         alert("An error occurred: " + error);
       },
     });
@@ -353,8 +352,8 @@ jQuery(document).ready(function ($) {
 
     $("#fkdistrict").val(data.districtid); // DistrictID
     $("#zonename").val(data.zonename); // zonename
-    $("#ClubID").val(data.id); // iMembersDB ClubID
-    $("#fkclubname").val(data.text); // fkclubNmae
+    $("#ClubID").val(data.clubid); // iMembersDB ClubID
+    $("#fkclubname").val(data.text); // fkclubName
     $("#ClubLocDiv").html(
       "District: " + data.districtid + "   RAGAS zone: " + data.zonename
     );
@@ -391,11 +390,14 @@ jQuery(document).ready(function ($) {
       },
     },
     results: function (data) {
-      results = [];
+      let results = [];
       $.each(data, function (index, item) {
         results.push({
-          id: item.id,
+          id: item.clubid,
           text: item.text,
+          districtid: item.districtid,
+          zonename: item.zonename,
+          clubid: item.clubid
         });
       });
       return {

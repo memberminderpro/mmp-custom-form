@@ -58,7 +58,9 @@
             </p>
             <p>
                 <label for="clubname">Club Name</label>
-                <select id="clubname" type="text" name="clubname"class="TxtIn ClubLookupInZone" required></select>
+                <select id="clubname" class="TxtIn ClubLookupInZone" required></select>
+                <!-- Added hidden input for correct club ID submission -->
+                <input type="hidden" id="ClubID" name="clubid" />
                 <div id="ClubLocDiv"></div>
             </p>
           </fieldset>
@@ -99,7 +101,7 @@
          </fieldset>
         <fieldset>
           <div>
-            <p>RAGAS and our membership management system vendor, <a href="https://mmpro.llc" target="_blank" rel="noopener external" >Member Minder Pro, LLC</a>, <em>(dba <strong>iMembersDB</strong>)</em> is collecting yourpersonal information in order to process your online application for RAGAS membership. The Registrant authorizes RAGAS to collect and use personal information about the Registrant for the purpose of receiving communications and the purposes described in the RAGAS policies relating to data privacy - RAGAS.online/privacy. Permission may be withdrawn at any time by contacting RAGAS’s Privacy Officer at <a href="mailto:privacy@ragas.online?subject=RE%3A%20%27Join%20Us%20Form%27%20Privacy" target="_blank">privacy@ragas.online</a>.</p>
+            <p>RAGAS and our membership management system vendor, <a href="https://mmpro.llc" target="_blank" rel="noopener external" >Member Minder Pro, LLC</a>, <em>(dba <strong>iMembersDB</strong>)</em> is collecting your personal information in order to process your online application for RAGAS membership. The Registrant authorizes RAGAS to collect and use personal information about the Registrant for the purpose of receiving communications and the purposes described in the RAGAS policies relating to data privacy - RAGAS.online/privacy. Permission may be withdrawn at any time by contacting RAGAS's Privacy Officer at <a href="mailto:privacy@ragas.online?subject=RE%3A%20%27Join%20Us%20Form%27%20Privacy" target="_blank">privacy@ragas.online</a>.</p>
             <p>Please check the <code>I Consent</code> checkbox below to allow us to collect, use, and disclose your personal information as described above.</p>
             <p class="consent-affirmation">
               <input id="Consent" type="checkbox" name="Consent" value="1" disabled />
@@ -128,9 +130,9 @@
       </div>
       <div id="wait">
         <div>
-          <img src="https://www.emembersdb.com/Portal/images/tm.png" height="50" />
+          <img src="https://www.emembersdb.com/Portal/images/tm.png" alt="TeamMerchant Logo" height="50" />
           <h4>Redirecting to payment processor...</h4>
-          <img src="https://www.emembersdb.com/images/loading.gif" height="30" />
+          <img src="https://www.emembersdb.com/images/loading.gif" alt="Loading Icon" height="30" />
         </div>
       </div>
       <!-- !SECTION: Hidden Divs -->

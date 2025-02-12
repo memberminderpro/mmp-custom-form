@@ -4,7 +4,7 @@ add_action('admin_menu', 'mmp_custom_form_add_admin_menu');
 add_action('admin_init', 'mmp_custom_form_settings_init');
 
 function mmp_custom_form_add_admin_menu() { 
-    add_menu_page('Join Us Form', 'Join Us Form', 'manage_options', 'mmp_custom_form', 'mmp_custom_form_options_page');
+    add_menu_page('MMP Custom Form', 'MMP Custom Form', 'manage_options', 'mmp_custom_form', 'mmp_custom_form_options_page', 'dashicons-forms');
 }
 
 function mmp_custom_form_settings_init() { 
@@ -107,10 +107,22 @@ function mmp_custom_form_settings_section_callback() {
     echo __('Please enter your reCAPTCHA keys here.', 'mmp');
 }
 
-function mmp_custom_form_options_page() { 
+function mmp_custom_form_options_page() {
+    // Ensure the get_plugin_data function is available
+    if ( ! function_exists( 'get_plugin_data' ) ) {
+         require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    }
+
+    // Define the path to your main plugin file (adjust if necessary)
+    $plugin_file = plugin_dir_path( __FILE__ ) . '../mmp-custom-form.php';
+    $plugin_data = get_plugin_data( $plugin_file, false, false );
+    $version = $plugin_data['Version'];
+
     ?>
     <form action='options.php' method='post'>
-        <h2>"<a href='/join-us/'>Join Us</a>" Form Settings</h2>
+        <h2>MMP Custom Membership Form</h2>
+        <p><strong>Version <?php echo esc_html( $version ); ?></strong></p>
+        <p>For support, please contact <a href="mailto:support@memberminderpro.com">support@memberminderpro.com</a>.</p>
         <?php
         settings_fields('mmpPlugin');
         do_settings_sections('mmpPlugin');
