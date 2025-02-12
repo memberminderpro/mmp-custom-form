@@ -410,43 +410,11 @@ jQuery(document).ready(function ($) {
       "District: " + data.districtid + "   RAGAS zone: " + data.zonename
     );
 
-    // Now call FKRotaryClubNoRegion to get the proper club id for submission.
-    $.ajax({
-      url: "https://www.emembersdb.com/Lookup/FKRotaryClubNoRegion.cfm",
-      type: "POST",
-      dataType: "json",
-      data: {
-        AccountID: mmpFormOptions.account_ID,
-        countrycode: $(".CountryLookup option:selected").val(),
-        statecode: $("#StateCode").val(),
-        orgtype: $("#fkclubtype").val(),
-        term: $.trim(data.text)
-      },
-      success: function (res) {
-        console.log("Response from FKRotaryClubNoRegion:", res);
-        if (res && res.length > 0) {
-          // Set hidden club id to the proper club id from the response.
-          $("#ClubID").val(res[0].id);
-          console.log("Proper club id from FKRotaryClubNoRegion:", res[0].id);
-          // If the returned club text differs from the currently selected text,
-          // update the select2 displayed option with the proper text.
-          if (res[0].text && res[0].text !== data.text) {
-            var newOption = new Option(res[0].text, res[0].id, true, true);
-            $(".ClubLookupInZone").append(newOption).trigger('change');
-            console.log("Updated select2 option text to:", res[0].text);
-          }
-        } else {
-          // Fallback to the original zone id if no proper club is returned.
-          $("#ClubID").val(data.id);
-          console.warn("No proper club found; falling back to zone id:", data.id);
-        }
-      },
-      error: function (xhr, status, error) {
-        console.error("FKRotaryClubNoRegion error:", error);
-        // Fallback to using the zone id
-        $("#ClubID").val(data.id);
-      }
-    });
+    // Parse the proper club id directly from the text field.
+    let match = data.text.match(/\((\d+)\)$/); // matches digits inside the final parentheses
+    let properClubId = match ? match[1] : data.id;
+    $("#ClubID").val(properClubId);
+    console.log("Extracted club id:", properClubId);
   });
 
   $(".ClubLookupInZone").select2({
