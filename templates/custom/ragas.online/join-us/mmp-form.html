@@ -62,9 +62,9 @@
         <p>
           <label for="clubname">Club Name</label>
           <select id="clubname" type="text" class="TxtIn ClubLookupInZone" required></select>
-          <div id="ClubLocDiv"></div>
-          <!-- Added hidden input to hold the proper club id -->
-          <input type="hidden" name="clubid" id="ClubID" />
+        <div id="ClubLocDiv"></div>
+        <!-- Added hidden input to hold the proper club id -->
+        <input type="hidden" name="clubid" id="ClubID" />
         </p>
       </fieldset>
 
@@ -72,11 +72,13 @@
         <legend>Billing Address:</legend>
         <p>
           <label for="Address1">Address1</label>
-          <input class="entry" id="Address1" type="text" maxlength="50" name="Address1" size="50" placeholder="Street Address" required />
+          <input class="entry" id="Address1" type="text" maxlength="50" name="Address1" size="50"
+            placeholder="Street Address" required />
         </p>
         <p>
           <label for="Address2">Address2</label>
-          <input class="entry" id="Address2" type="text" maxlength="50" name="Address2" size="50" placeholder="Ste / Suite" />
+          <input class="entry" id="Address2" type="text" maxlength="50" name="Address2" size="50"
+            placeholder="Ste / Suite" />
         </p>
         <p>
           <label for="City"> City</label>
@@ -121,6 +123,10 @@
             <label for="Consent" class="disabled">I Consent</label>
           </p>
         </div>
+        <div class="debug-button">
+          <!-- Add this temporary button somewhere in your form markup for testing -->
+          <button id="previewFinalPayload" type="button">Preview Final Payload</button>
+        </div>
         <div class="captcha-send">
           <p>
             <input id="Send" type="button" name="Send" value="Submit Application" class="btn btn-warning noprint" />
@@ -132,7 +138,8 @@
     <!-- Debug mode indicator -->
     <div id="debug-mode-indicator" style="display: none;">
       <div class="debug-notice">
-         <h4>⚠️ Debug Mode Enabled ⚠️</h4> <p>Form submissions will be displayed on screen instead of being processed</p>
+        <h4>⚠️ Debug Mode Enabled ⚠️</h4>
+        <p>Form submissions will be displayed on screen instead of being processed</p>
       </div>
     </div>
     <!-- Debug output container -->

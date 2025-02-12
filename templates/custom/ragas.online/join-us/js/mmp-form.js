@@ -27,6 +27,50 @@ function preventEnterSubmit(event) {
   return true;
 }
 
+$("#previewFinalPayload").click(function(){
+  // Append the hidden fields as done in verifyCaptchaAndSubmitForm:
+  $('<input>').attr({
+    type: 'hidden',
+    name: 'AccountID',
+    value: mmpFormOptions.account_ID
+  }).appendTo($joinForm);
+  $('<input>').attr({
+    type: 'hidden',
+    name: 'BID',
+    value: mmpFormOptions.BID
+  }).appendTo($joinForm);
+  $('<input>').attr({
+    type: 'hidden',
+    name: 'AccountEmail',
+    value: mmpFormOptions.account_email
+  }).appendTo($joinForm);
+
+  // Remove extraneous fields:
+  var allowedNames = [
+    "BID", "AccountID", "ClubID", "UserID",
+    "UserStatusCode", "AddressTypeID", "EmailTypeID",
+    "Prefix", "FirstName", "MidName", "LastName", "NameSfx", "NickName",
+    "Region", "RegionName",
+    "SendAppEMail", "AccountEmail", "FromName", "FormType", "Subject", "ReplyTo", "ccEMail", "bccEMail",
+    "MCY", "Referer",
+    "Address1", "Address2", "City", "StateCode", "ProvOrOther", "PostalZip", "CountryCode"
+  ];
+  $joinForm.find("input[name], select[name], textarea[name]").each(function(){
+    var fieldName = $(this).attr("name");
+    if (allowedNames.indexOf(fieldName) === -1) {
+      $(this).removeAttr("name");
+    }
+  });
+  // Display the final payload
+  let finalPayload = $joinForm.serializeArray();
+  console.log("Final Payload (preview):", finalPayload);
+  $("#messageContainer").show().html(
+    "<h4>Final Payload Preview:</h4><pre>" +
+    JSON.stringify(finalPayload, null, 2) +
+    "</pre>"
+  );
+});
+
 jQuery(document).ready(function ($) {
   const $emailDiv = $("#EMailDiv");
   const $captchaSend = $(".captcha-send");
