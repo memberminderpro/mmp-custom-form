@@ -1,0 +1,223 @@
+.mmp {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.entry {
+  height: 30px;
+}
+
+.error {
+  color: red;
+}
+
+.TDData {
+  font-size: 13px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.thc {
+  text-align: center;
+}
+
+.tdc {
+  text-align: center;
+}
+
+.error {
+  padding-left: 10px;
+  color: red;
+  font-size: 11px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+}
+
+.membercategorywrap {
+  min-width: 200px;
+  float: left;
+  padding-bottom: 3px;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+.star {
+  color: red;
+  font-weight: bold;
+}
+h4 {
+  font-size: 24px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+  margin: 0, auto;
+  text-align: center;
+}
+h5,
+legend {
+  font-size: 14px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+fieldset {
+    width: auto;
+    margin: 2em auto;
+}
+
+legend {
+  margin: 2em 0;
+}
+fieldset p {
+    width: auto;
+    margin: 0.5em auto;
+}
+fieldset p label {
+  display: inline-block;
+  width: 170px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+label.required::after {
+  content: " *";
+  color: red;
+}
+
+.consent-affirmation {
+  line-height: 3.4;
+  padding: 0.4em 1.2em 2.2em 0;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 18px;
+  color: #444;
+}
+
+.consent-affirmation label.disabled {
+  color: #ccc;
+}
+
+.consent-affirmation input[type="checkbox"],
+.checkbox-label-pair label {
+  vertical-align: middle;
+  width: auto;
+}
+
+#messageContainer {
+  margin: 10px auto;
+  padding: 0.6em 2em;
+}
+#messageContainer p {
+  font-size: 1.6em;
+  line-height: 1.8em;
+  text-align: center;
+  padding: 2em;
+}
+
+input.error {
+  border: 2px solid red;
+}
+
+#joinForm select,
+#joinForm input[type="text"] {
+  border: 1px solid #444;
+  border-radius: 4px;
+  width: 350px;
+  height: 30px;
+  color: #444;
+  margin: 2px;
+  padding: 6px;
+}
+select2-selection__rendered {
+  text-transform: capitalize;
+}
+
+#joinForm .captcha-send {
+  margin: 10px auto;
+}
+
+#fkcountry,
+#stateprov {
+  width: 300px;
+}
+
+#clubname {
+  width: 400px;
+}
+
+#ClubLocDiv, #EMailDiv {
+  margin: -20px 0 0 175px;
+
+}
+
+#wait {
+  display: none;
+}
+
+#wait div {
+  margin: 25px auto;
+  text-align: center;
+}
+#wait div h4 {
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+#wait div img {
+  width: auto;
+  height: 50px;
+}
+
+#wait div img:nth-child(2) {
+  height: 30px;
+}
+
+.is-invalid {
+  border: 2px solid red;
+}
+
+#EMailDiv {
+  color: red;
+}
+
+/* Divs hidden on page load */
+#wait,
+#Step2,
+#EMailDiv,
+.captcha-send,
+#Send,
+.print-link {
+  display: none;
+}
+
+@media (max-width: 655px) {
+  fieldset p label {
+    display: block;
+    width: 100%;
+    margin: 1px;
+  }
+  #messageContainer,
+  #messageContainer p {
+    margin: none;
+    padding: none;
+  }
+  .et_pb_row {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    position: relative;
+  }
+  form {
+    width: 96%;
+    margin: 2px auto;
+    padding: 0;
+  }
+  #ClubLocDiv, #EMailDiv {
+    margin-left: 0px;
+  }
+  .consent-affirmation label {
+    display: inline;
+    width: auto;
+    margin: 1px;
+  }
+}
